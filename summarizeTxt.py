@@ -1,7 +1,11 @@
-import requests
+import requests, os
+from dotenv import load_dotenv
+
+load_dotenv()
+key = os.getenv('API_KEY')
 
 API_URL = "https://api-inference.huggingface.co/models/deepset/roberta-base-squad2"
-headers = {"Authorization": "Bearer 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"}
+headers = {"Authorization": key}
 
 def query(txt, question):
 	response = requests.post(API_URL, headers=headers, json={"inputs" : {
